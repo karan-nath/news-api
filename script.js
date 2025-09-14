@@ -18,7 +18,7 @@ async function fetchRandomNews() {
 }
 
 function displayBlogs(articles) {
-    blogContainer.innerText = "";
+    blogContainer.innerHTML = "";
     articles.forEach((article) => {
         const blogCard = document.createElement("div");
         blogCard.classList.add("blog-card");
