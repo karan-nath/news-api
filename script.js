@@ -7,7 +7,7 @@ const searchButton = document.getElementById("search-button");
 
 async function fetchRandomNews() {
     try {
-        const apiUrl = `https://newsapi.org/v2/everything?q=in&apiKey=${apiKey}`;
+        const apiUrl = `https://newsapi.org/v2/everything?q=in&pageSize=10&apiKey=${apiKey}`;
         const response = await fetch(apiUrl);
         const data = await response.json();
         return data.articles;
@@ -26,6 +26,9 @@ function displayBlogs(articles) {
         const img = document.createElement("img");
         img.src = article.urlToImage || "";
         img.alt = article.title || "Image";
+        img.onerror = () => {
+            img.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiNFMEUwRTAiLz48dGV4dCB4PSI3NSIgeT0iNzUiIGZvbnQtc2l6ZT0iMTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM3Nzc3NzciPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==";
+        };
 
         const title = document.createElement("h2");
         title.textContent = article.title || "No Title";
